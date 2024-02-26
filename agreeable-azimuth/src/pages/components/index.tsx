@@ -1,19 +1,31 @@
-import React, { useRef } from "react";
-import ReactHlsPlayer from 'react-hls-player';
+import React, { useRef, useEffect } from "react";
+import Hls from "hls.js";
 
-export default function Home() {
-    const playerRef = useRef(null);
+const Home = () => {
+  const playerRef = useRef(null);
 
-    return (
-        <div>
-            <ReactHlsPlayer
-                playerRef={playerRef}
-                src="https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
-                autoPlay={false}
-                controls={true}
-                width="100%"
-                height="auto"
-            />
-        </div>
-    )
-}
+  useEffect(() => {
+    console.log('hello');
+    const video = playerRef.current;
+    const hls = new Hls();
+    const url = "http://192.168.1.248:8000/live/hello/index.m3u8";
+
+    hls.loadSource(url);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, function() { video.play(); });
+
+    return () => {
+      hls.destroy();
+    };
+  }, []);
+
+  return (
+    <video
+      className="videoCanvas"
+      ref={playerRef}
+      autoPlay={true}
+    />
+  );
+};
+
+export default Home;

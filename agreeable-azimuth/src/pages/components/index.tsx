@@ -1,11 +1,11 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Hls from "hls.js";
 
 const Home = () => {
   const playerRef = useRef(null);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    console.log('hello');
     const video = playerRef.current;
     const hls = new Hls();
     const url = "http://192.168.1.248:8000/live/hello/index.m3u8";
@@ -14,17 +14,24 @@ const Home = () => {
     hls.attachMedia(video);
     hls.on(Hls.Events.MANIFEST_PARSED, function() { video.play(); });
 
+    hls.on(Hls.Events.ERROR, (event, data) => {
+      setMessage("Streamer is offline now");
+    });
+
     return () => {
       hls.destroy();
     };
   }, []);
 
   return (
-    <video
-      className="videoCanvas"
-      ref={playerRef}
-      autoPlay={true}
-    />
+    <div>
+      {message && <p>{message}</p>}
+      <video
+        className="videoCanvas"
+        ref={playerRef}
+        autoPlay={true}
+      />
+    </div>
   );
 };
 

@@ -26,11 +26,16 @@ const Home = () => {
   return (
     <div>
       {message && <p>{message}</p>}
-      <video
-        className="videoCanvas"
-        ref={playerRef}
-        autoPlay={true}
-      />
+      {!message ? (
+        <video
+          width="500"
+          height="300"
+          className="videoCanvas"
+          ref={playerRef}
+          autoPlay={true}
+          controls
+        />
+      ) : null}
     </div>
   );
 };

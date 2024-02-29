@@ -9,6 +9,7 @@ body {
     max-width: 1280px;
     margin: 0 auto;
     padding: 30px;
+    color: #fffffe;
 }
 
 .steam_wrap {
@@ -116,4 +117,8 @@ header {
     font-weight: 500;
     font-size: 15px;
     border-radius: 2px;
+}
+
+a {
+    color: #fffffe;
 }

@@ -1,9 +1,8 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import '../styles/App.css';
 import Hls from "hls.js";
-import Header from "./Header";
 
-const Home = () => {
+const User = () => {
   const playerRef = useRef(null);
   const [message, setMessage] = useState("");
 
@@ -15,7 +14,9 @@ const Home = () => {
 
       hls.loadSource(url);
       hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, function() { video.play(); });
+      hls.on(Hls.Events.MANIFEST_PARSED, function() { 
+        video.play(); 
+      });
 
       hls.on(Hls.Events.ERROR, (event, data) => {
         setMessage("Streamer is offline now");
@@ -29,7 +30,6 @@ const Home = () => {
 
   return (
     <div>
-      <Header />
       <div className="steam_wrap">
         {message && 
           <div className="offline_box">
@@ -58,4 +58,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default User;

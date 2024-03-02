@@ -1,8 +1,8 @@
 import { useRef, useEffect, useState } from "react";
-import '../styles/App.css';
+import '../App.css';
 import Hls from "hls.js";
 
-const User = () => {
+const Streamer = () => {
   const playerRef = useRef(null);
   const [message, setMessage] = useState("");
 
@@ -58,4 +58,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Streamer;

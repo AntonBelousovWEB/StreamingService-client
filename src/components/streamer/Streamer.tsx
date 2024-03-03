@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
-import '../App.css';
 import Hls from "hls.js";
+import Header from "../gui/Header";
 
 const Streamer = () => {
   const playerRef = useRef(null);
@@ -30,6 +30,7 @@ const Streamer = () => {
 
   return (
     <div>
+      <Header />
       <div className="steam_wrap">
         {message && 
           <div className="offline_box">

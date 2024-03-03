@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import Streamer from './components/Streamer'
+import './App.css';
+import Root from './components/root';
 
 function App() {
   return (
     <div className="container">
-      <Streamer />
+      <Root />
     </div>
   )
 }

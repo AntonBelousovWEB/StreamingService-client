@@ -6,6 +6,7 @@ import {
   ApolloProvider, 
   createHttpLink 
 } from "@apollo/client";
+import { AuthProvider } from './contexts/AuthContext.tsx';
 import { setContext } from '@apollo/client/link/context'
 import App from './App.tsx'
 import './reset.css'
@@ -30,8 +31,10 @@ const client = new ApolloClient({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    <AuthProvider>
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </AuthProvider>
   </React.StrictMode>,
 )

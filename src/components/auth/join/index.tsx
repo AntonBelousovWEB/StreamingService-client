@@ -2,13 +2,21 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { REGISTER_USER } from '../../../server/mutations/User';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+    const { login, user } = React.useContext(AuthContext);
     const [regUser] = useMutation(REGISTER_USER);
     const navigate = useNavigate();
+
+    React.useEffect(() => {
+        if(user) {
+          navigate('/')
+        }
+    }, [user, navigate])
 
     const Register = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -23,6 +31,7 @@ export default function Register() {
             }
         }).then(({ data }) => {
             localStorage.setItem("token", data.registerUser.tokenJWT);
+            login(data.registerUser);
             navigate("/");
         })
     }

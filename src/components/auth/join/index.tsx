@@ -1,13 +1,34 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
+import { REGISTER_USER } from '../../../server/mutations/User';
 
 export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+    const [regUser] = useMutation(REGISTER_USER);
+    const navigate = useNavigate();
+
+    const Register = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        regUser({
+            variables: {
+                registerUserInput: {
+                    email,
+                    name,
+                    password,
+                }
+            }
+        }).then(({ data }) => {
+            localStorage.setItem("token", data.registerUser.tokenJWT);
+            navigate("/");
+        })
+    }
 
     return (
-        <form className="auth_form">
-            {/* {message && <p>{message}</p>} */}
+        <form className="auth_form" onSubmit={(e) => Register(e)}>
             <h1 className="title_form">Register</h1>
             <div className="auth-form_input">
                 <h1>Email:</h1>

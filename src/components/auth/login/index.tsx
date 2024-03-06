@@ -22,7 +22,7 @@ export default function Login() {
 
         logUser({
             variables: {
-                registerUserInput: {
+                loginUserInput: {
                     email,
                     password,
                 }

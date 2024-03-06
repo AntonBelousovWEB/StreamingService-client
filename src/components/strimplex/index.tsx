@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../gui/Header";
+import Header from "../gui/Header/Header";
 
 export default function Main() {
     return (

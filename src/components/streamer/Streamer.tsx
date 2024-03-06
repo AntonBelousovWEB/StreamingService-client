@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import Hls from "hls.js";
-import Header from "../gui/Header";
+import Header from "../gui/Header/Header";
 
 const Streamer = () => {
   const playerRef = useRef(null);

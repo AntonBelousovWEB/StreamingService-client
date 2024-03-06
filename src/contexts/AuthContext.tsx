@@ -4,6 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 interface User {
     name: string;
     email: string;
+    streamKey: string;
 }
 
 interface InitialState {

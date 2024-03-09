@@ -1,8 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import Hls from "hls.js";
-import Header from "../gui/Header/Header";
 
-const Streamer = () => {
+const Streamer = ({ stream }: { stream: string }) => {
   const playerRef = useRef(null);
   const [message, setMessage] = useState("");
 
@@ -10,7 +9,7 @@ const Streamer = () => {
     if (playerRef.current) {
       const video = playerRef.current;
       const hls = new Hls();
-      const url = "http://192.168.1.248:8000/live/hello/index.m3u8";
+      const url = `http://192.168.1.248:8000/live/${stream}/index.m3u8`;
 
       hls.loadSource(url);
       hls.attachMedia(video);
@@ -30,7 +29,6 @@ const Streamer = () => {
 
   return (
     <div>
-      <Header />
       <div className="steam_wrap">
         {message && 
           <div className="offline_box">
@@ -38,22 +36,14 @@ const Streamer = () => {
           </div>
         }
         {!message ? (
-          <div id="videoWrapper">
             <video
-              className="videoCanvas"
+              width={300}
+              height={200}
               ref={playerRef}
               autoPlay={true}
-              controls
+              muted={true}
             />
-          </div>
         ) : null}
-        <div className="streamer_info">
-          <div className="follow_wrap">
-            <h1 className="streamer_name">Adolf Romanovich</h1>
-            <button className="follow_button">Follow</button>
-          </div>
-          <h1 className="streamer_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorem provident sapiente sint explicabo est earum temporibus repellendus laborum aliquid minima quas debitis, veniam impedit consequatur numquam ipsa suscipit fugiat?</h1>
-        </div>
       </div>
     </div>
   );

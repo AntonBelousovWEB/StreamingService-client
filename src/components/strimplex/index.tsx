@@ -26,11 +26,14 @@ export default function Main() {
         <div>
             <Header />
             <div className="streams_wrap">
-                {streams.map((stream) => (
-                    <Streamer key={stream} stream={stream}/> 
-                ))}
+                {streams.length > 0 ? (
+                    streams.map((stream) => (
+                        <Streamer key={stream} stream={stream}/> 
+                    ))
+                ) : (
+                    <p>Currently, no one is streaming :(</p>
+                )}
             </div>
-            
         </div>
     );
 }

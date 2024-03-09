@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../gui/Header/Header";
 import axios from "axios";
 import Streamer from "../streamer/Streamer";
+import { Link } from "react-router-dom";
 
 export default function Main() {
     const [streams, setStreams] = useState<Array<string>>([]);
@@ -28,10 +29,14 @@ export default function Main() {
             <div className="streams_wrap">
                 {streams.length > 0 ? (
                     streams.map((stream) => (
-                        <Streamer key={stream} stream={stream}/> 
+                        <Link to={`/stream/${stream}`}>
+                            <Streamer key={stream} stream={stream}/> 
+                        </Link>
                     ))
                 ) : (
-                    <p>Currently, no one is streaming :(</p>
+                    <p>Currently, no one is streaming. Be the first to start 
+                        <Link className="link" to={"/profile"}> streaming!</Link>
+                    </p>
                 )}
             </div>
         </div>

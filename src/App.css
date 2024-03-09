@@ -178,7 +178,7 @@ a {
 
 .button_show {
     background-color: #ff8906;
-    padding: 20px 10px;
+    padding: 10px 5px;
     border-radius: 2px;
     font-weight: 600;
 }
@@ -193,4 +193,8 @@ a {
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
+}
+
+.link {
+    color: #ff8906;
 }

@@ -1,7 +1,20 @@
 import { useRef, useEffect, useState } from "react";
 import Hls from "hls.js";
 
-const Streamer = ({ stream }: { stream: string }) => {
+interface StreamerP {
+  streamURL: string,
+  widthV?: number,
+  heightV?: number,
+  mutedV?: boolean,
+  controlV?: boolean 
+}
+
+const Streamer = ({ 
+    streamURL, 
+    widthV = 300, 
+    heightV = 200, 
+    mutedV = false, 
+    controlV = true }: StreamerP) => {
   const playerRef = useRef(null);
   const [message, setMessage] = useState("");
 
@@ -9,7 +22,7 @@ const Streamer = ({ stream }: { stream: string }) => {
     if (playerRef.current) {
       const video = playerRef.current;
       const hls = new Hls();
-      const url = `http://192.168.1.248:8000/live/${stream}/index.m3u8`;
+      const url = `http://192.168.1.248:8000/live/${streamURL}/index.m3u8`;
 
       hls.loadSource(url);
       hls.attachMedia(video);
@@ -31,17 +44,20 @@ const Streamer = ({ stream }: { stream: string }) => {
     <div>
       <div className="steam_wrap">
         {message && 
-          <div className="offline_box">
-            <p>{message}</p>
+          <div 
+            style={{maxWidth: widthV, height: heightV}} 
+            className="offline_box">
+              <p>{message}</p>
           </div>
         }
         {!message ? (
             <video
-              width={300}
-              height={200}
+              width={widthV}
+              height={heightV}
               ref={playerRef}
               autoPlay={true}
-              muted={true}
+              controls={controlV}
+              muted={mutedV}
             />
         ) : null}
       </div>

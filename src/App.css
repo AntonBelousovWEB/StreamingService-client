@@ -20,10 +20,8 @@ body {
 }
 
 .offline_box {
-    max-width: 300px;
     flex-grow: 1;
     padding: 30px;
-    height: 200px;
     background-color: rgb(16, 16, 16);
     color: #fffffe;
     display: flex;

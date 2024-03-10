@@ -30,7 +30,12 @@ export default function Main() {
                 {streams.length > 0 ? (
                     streams.map((stream) => (
                         <Link to={`/stream/${stream}`}>
-                            <Streamer key={stream} stream={stream}/> 
+                            <Streamer 
+                                key={stream} 
+                                streamURL={stream} 
+                                mutedV={true} 
+                                controlV={false}
+                            /> 
                         </Link>
                     ))
                 ) : (

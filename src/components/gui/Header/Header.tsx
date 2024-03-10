@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthContext';
+import person from './img/person.svg'
 
 export default function Header() {
     const { user } = useContext(AuthContext);
@@ -14,7 +15,7 @@ export default function Header() {
                     to={'/profile'}>
                         <img 
                             className='photo_user' 
-                            src="./img/person.svg" 
+                            src={person}
                             alt="" 
                         />
                 </Link>

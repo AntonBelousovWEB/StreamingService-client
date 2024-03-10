@@ -1,13 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import Hls from "hls.js";
-
-interface StreamerP {
-  streamURL: string,
-  widthV?: number,
-  heightV?: number,
-  mutedV?: boolean,
-  controlV?: boolean 
-}
+import { StreamerP } from "../../interfaces/streamer.interface";
 
 const Streamer = ({ 
     streamURL, 
